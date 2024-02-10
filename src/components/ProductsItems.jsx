@@ -1,19 +1,15 @@
 /* eslint-disable react/prop-types */
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { cartAction } from "../store/shopingCart";
 const ProductsItems = ({ items }) => {
-  const bagItems = useSelector((state) => state.cart);
-  const element = bagItems.some((item) => item.id === items.id);
-
+  
   const dispatch = useDispatch();
   const handelAddToCart = () => {
     dispatch(cartAction.addToCart(items));
   };
 
-  const handelRemoveToCart = () => {
-    dispatch(cartAction.removeToCart(items.id));
-  };
+  
 
   return (
     <div>
@@ -32,21 +28,21 @@ const ProductsItems = ({ items }) => {
           </h1>
         </div>
         <div className="max-w-40 ">
-          {element ? (
-            <button
+         
+            {/* <button
               onClick={handelRemoveToCart}
               className="  px-4 py-2 border-2 rounded-lg bg-red-900 text-white font-bold"
             >
               Remove
-            </button>
-          ) : (
+            </button> */}
+          
             <button
               onClick={handelAddToCart}
               className="  px-4 py-2 border-2 rounded-lg bg-green-900 text-white font-bold"
             >
               Add Cart
             </button>
-          )}
+        
         </div>
       </div>
     </div>

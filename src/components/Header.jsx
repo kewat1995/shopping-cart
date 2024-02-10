@@ -1,10 +1,11 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const bagItems = useSelector((state) => state.cart);
+  const bagItems = useSelector((state) => state.cart.cart);
+  console.log(bagItems)
 
   return (
     <div>

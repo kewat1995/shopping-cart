@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from "react";
+
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import BagCartItems from "../components/BagCartItems";
 
 const Carts = () => {
-  const [totalamount, setTotalamount] = useState(0);
+  
+  const bagItems = useSelector((state) => state.cart.cart);
+ 
 
-  const bagItems = useSelector((state) => state.cart);
-
-  useEffect(() => {
-    setTotalamount(bagItems.reduce((a, b) => a + b.price, 0));
-  }, [bagItems]);
-  console.log(totalamount);
+ 
+  
   return (
     <div className="md:flex ">
       {bagItems && bagItems.length ? (
         <>
           <div className="min-h-[80vh] grid md:grid-cols-2 max-w-6xl mx-auto overflow-hidden">
             <div className="p-3">
-              {bagItems.map((item) => (
+              {bagItems?.map((item) => (
                 <BagCartItems key={item.id} item={item} />
               ))}
             </div>
@@ -32,7 +30,7 @@ const Carts = () => {
 
                 <br />
                 <span className="font-semibold">Total Amount = </span>
-                <span>${totalamount.toFixed(2)}</span>
+                <span>${0}</span>
               </p>
             </div>
           </div>
