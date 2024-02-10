@@ -11,6 +11,13 @@ const BagCartItems = ({ item }) => {
   const handelRemoveFromCart = () => {
     dispatch(cartAction.removeToCart(item.id));
   };
+
+  const handleCartQuantity = (count) => {
+    if(item.itemCount == 1 && count == -1) {
+      handelRemoveFromCart()
+    }
+    dispatch(cartAction.manageCartItemCount({id: item.id, count}));
+  }
   
   return (
     <>
@@ -37,9 +44,9 @@ const BagCartItems = ({ item }) => {
           
         </div>
         <div className="counter">
-            <button className="inc-btn">+</button>
-            <p>{item.rating.count}</p>
-            <button className="inc-btn">-</button>
+            <button className="inc-btn" onClick={() => handleCartQuantity(1)}>+</button>
+            <p>{item.itemCount}</p>
+            <button className="inc-btn" onClick={() => handleCartQuantity(-1)}>-</button>
             </div>
       </div>
     </>
