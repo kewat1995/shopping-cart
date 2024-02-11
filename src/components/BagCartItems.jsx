@@ -11,14 +11,7 @@ const BagCartItems = ({ item }) => {
   const handelRemoveFromCart = () => {
     dispatch(cartAction.removeToCart(item.id));
   };
-
-  const handelCartQuantity = (count) => {
-    if (item.quantity == 1 && count == -1) {
-      handelRemoveFromCart();
-    }
-    dispatch(cartAction.manageCartQuantity({ id: item.id, count }));
-  };
-
+  
   return (
     <>
       <div className="max-w-6xl mx-auto    p-4 rounded-xl border-3 mt-3  ">
@@ -56,7 +49,13 @@ const BagCartItems = ({ item }) => {
               </div>
             </div>
           </div>
+          
         </div>
+        <div className="counter">
+            <button className="inc-btn">+</button>
+            <p>{item.rating.count}</p>
+            <button className="inc-btn">-</button>
+            </div>
       </div>
     </>
   );
