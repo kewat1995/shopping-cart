@@ -7,8 +7,18 @@ const Carts = () => {
   
   const bagItems = useSelector((state) => state.cart.cart);
  
+  
 
- 
+  const getTotal = () => {
+    let totalQuantity = 0
+    let totalPrice = 0
+    bagItems.forEach(item => {
+      totalQuantity += item.quantity
+      totalPrice += item.price * item.quantity
+    })
+    return {totalPrice, totalQuantity}
+  }
+ console.log(getTotal())
   
   return (
     <div className="md:flex ">
@@ -26,11 +36,11 @@ const Carts = () => {
               <h1 className=" text-2xl font-bold">Your Card Summery</h1>
               <p>
                 <span className="font-semibold">Total Items = </span>
-                <span>{bagItems.length}</span>
+                <span>{getTotal().totalQuantity}</span>
 
                 <br />
                 <span className="font-semibold">Total Amount = </span>
-                <span>${0}</span>
+                <span>${getTotal().totalPrice.toFixed(2)}</span>
               </p>
             </div>
           </div>
